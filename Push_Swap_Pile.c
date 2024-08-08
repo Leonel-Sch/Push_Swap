@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/08 18:10:57 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:14:27 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ void	ft_make_pile(long long *tab, int words)
 	stack_b = NULL;
 	//stack_a = ft_pilefirst(stack_a);
 	ft_swap_a(stack_a);
+	ft_printf("\n ----------- \n");
 	ft_print_pile_and_compare(tab, stack_a, words - 1);
+	ft_pileclear(&stack_a, del);
+	ft_pileclear(&stack_b, del);
 }

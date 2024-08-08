@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/08 17:59:06 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:13:01 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void				ft_make_pile(long long *tab, int words);
 void				ft_swap_a(t_pile *stack_a);
 void				ft_swap_b(t_pile *stack_b);
 t_pile				*ft_pilefirst(t_pile *pile);
-void				*del(int contenu);
+void				del(int contenu);
 
 
 #endif
