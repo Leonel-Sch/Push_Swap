@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:00:01 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/07 11:53:50 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:46:41 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_parsing_status	ft_isnumber(char **tab)
 		if (ft_isdigit(tab[i][0]) != 2048 && tab[i][0] != '+'
 			&& tab[i][0] != '-')
 			return (INVALID_VALUE);
+		if ((tab[i][0] == '+' || tab[i][0] == '-') && (tab[i][1] == '\0'))
+			return (INVALID_VALUE);
 		else
 		{
 			while (tab[i][j])
@@ -66,7 +68,7 @@ t_parsing_status	ft_check_values(char **tab, int words, long long *tabllong)
 
 	i = 0;
 	if (ft_isnumber(tab) == INVALID_VALUE)
-		return (ft_printf("Error"), INVALID_VALUE);
+		return (INVALID_VALUE);
 	while (tab[i])
 	{
 		tabllong[i] = ft_atoll(tab[i]);
@@ -74,7 +76,7 @@ t_parsing_status	ft_check_values(char **tab, int words, long long *tabllong)
 	}
 	ft_free_tab(tab, words);
 	if (ft_check_long_long(tabllong, words) == INVALID_VALUE)
-		return (ft_printf("\nError\n"), INVALID_VALUE);
+		return (INVALID_VALUE);
 	return (VALID_VALUE);
 }
 

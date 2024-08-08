@@ -6,7 +6,7 @@
 #    By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 16:34:49 by lscheupl          #+#    #+#              #
-#    Updated: 2024/08/07 15:12:04 by lscheupl         ###   ########.fr        #
+#    Updated: 2024/08/08 17:02:47 by lscheupl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,4 +134,6 @@ fclean_libft: clean_libft
 
 relibft: fclean_libft
 	$(MAKE) all_libft
+
+.PHONY : all re clean fclean fclean_libft clean_libft relibft all_libft
 
