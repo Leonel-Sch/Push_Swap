@@ -6,7 +6,7 @@
 #    By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 16:34:49 by lscheupl          #+#    #+#              #
-#    Updated: 2024/08/08 17:02:47 by lscheupl         ###   ########.fr        #
+#    Updated: 2024/08/12 14:44:19 by lscheupl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,7 @@ all:
 	$(MAKE) all_libft
 	$(MAKE) $(NAME)
 
-$(NAME): $(SOURCES)
+$(NAME):
 	$(CC) $(CFLAGS) $(SOURCES_PUSH_SWAP) -I $(INCLUDES) -I $(INCLUDES_LIBFT) $(NAME_LIBFT) -o $(NAME)
 
 clean: fclean_libft

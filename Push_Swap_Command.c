@@ -6,16 +6,13 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:07:29 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/08 18:05:49 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:50:35 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push_Swap.h"
 
-// sa (swap a) : Intervertit les 2 premiers éléments au sommet de la pile a.
-// Ne fait rien s’il n’y en a qu’un ou aucun.
-
-void	ft_swap_a(t_pile *stack_a)
+void	ft_swap_a(t_pile *stack_a, t_writing_status status)
 {
 	int	swap;
 
@@ -26,12 +23,12 @@ void	ft_swap_a(t_pile *stack_a)
 		stack_a->prev->content = stack_a->content;
 		stack_a->content = swap;
 	}
+	if (status == do_not_write)
+		return;
+	ft_printf("sa\n");
 }
 
-// sb (swap b ) : Intervertit les 2 premiers éléments au sommet de la pile b.
-// Ne fait rien s’il n’y en a qu’un ou aucun.
-
-void	ft_swap_b(t_pile *stack_b)
+void	ft_swap_b(t_pile *stack_b, t_writing_status status)
 {
 	int	swap;
 
@@ -42,59 +39,153 @@ void	ft_swap_b(t_pile *stack_b)
 		stack_b->prev->content = stack_b->content;
 		stack_b->content = swap;
 	}
+	if (status == do_not_write)
+		return;
+	ft_printf("sb\n");
 }
-
-// ss : sa et sb en même temps.
 
 void	ft_double_swap(t_pile *stack_a, t_pile *stack_b)
 {
-	ft_swap_a(stack_a);
-	ft_swap_b(stack_b);
+	ft_swap_a(stack_a, do_not_write);
+	ft_swap_b(stack_b, do_not_write);
+	ft_printf("ss\n");
 }
 
-// pa (push a) : Prend le premier élément au sommet de b et le met sur a.
-// Ne fait rien si b est vide.
-
-void	ft_push_a(t_pile *stack_a, t_pile *stack_b)
+void	ft_push_a(t_stacks *piles)
 {
-	if (stack_b != NULL)
+	int	cache;
+
+	if (piles->stack_b != NULL)
 	{
-		ft_pilefirst(stack_b);
-		ft_pileadd_front(&stack_a, stack_b);
-		ft_piledelone(stack_b, del);
+		ft_pilefirst(piles->stack_b);
+		cache = (piles->stack_b)->content;
+		if (piles->stack_a == NULL)
+			piles->stack_a = ft_pilenew(cache);
+		else
+			ft_pileadd_front(&piles->stack_a, ft_pilenew(cache));
+		if (piles->stack_b->next == NULL)
+		{
+			ft_pileclear(&(piles->stack_b), del);
+			return ;
+		}
+		else
+			(piles->stack_b) = (piles->stack_b)->next;
+		ft_piledelone(((piles->stack_b)->prev), del);
+		(piles->stack_b)->prev = NULL;
+		*(piles->stack_b) = *piles->stack_b;
 	}
 }
 
-void	del(int contenu)
+void	del(int *contenu)
 {
-	contenu = 0;
+	*contenu = 0;
 }
 
-// pb (push b) : Prend le premier élément au sommet de a et le met sur b.
-// Ne fait rien si a est vide.
-
-void	ft_push_a(t_pile *stack_a, t_pile *stack_b)
+void	ft_push_b(t_stacks *piles)
 {
-	if (stack_a != NULL)
+	int	cache;
+
+	if (piles->stack_a != NULL)
 	{
-		ft_pilefirst(stack_a);
-		ft_pileadd_front(&stack_b, stack_a);
-		ft_piledelone(stack_a, del);
+		ft_pilefirst(piles->stack_a);
+		cache = (piles->stack_a)->content;
+		if (piles->stack_b == NULL)
+			piles->stack_b = ft_pilenew(cache);
+		else
+			ft_pileadd_front(&piles->stack_b, ft_pilenew(cache));
+		if (piles->stack_a->next == NULL)
+		{
+			ft_pileclear(&(piles->stack_a), del);
+			return ;
+		}
+		else
+			(piles->stack_a) = (piles->stack_a)->next;
+		ft_piledelone(((piles->stack_a)->prev), del);
+		(piles->stack_a)->prev = NULL;
+		*(piles->stack_a) = *piles->stack_a;
 	}
 }
 
-// ra (rotate a) : Décale d’une position vers le haut tous les élements de la pile a.
-// Le premier élément devient le dernier.
+void	ft_rotate_a(t_stacks *piles, t_writing_status status)
+{
+	int	value;
 
-// rb (rotate b) : Décale d’une position vers le haut tous les élements de la pile b.
-// Le premier élément devient le dernier.
+	value = (piles->stack_a)->content;
+	ft_pileadd_back(&(piles->stack_a), ft_pilenew(value));
+	(piles->stack_a) = (piles->stack_a)->next;
+	ft_piledelone(((piles->stack_a)->prev), del);
+	piles->stack_a->prev = NULL;
+	*(piles->stack_a) = *piles->stack_a;
+	if (status == do_not_write)
+		return;
+	ft_printf("ra\n");
+}
 
-// rr : ra et rb en même temps.
+void	ft_rotate_b(t_stacks *piles, t_writing_status status)
+{
+	int	value;
 
-// rra (reverse rotate a) : Décale d’une position vers le bas tous les élements de
-// la pile a. Le dernier élément devient le premier.
+	value = (piles->stack_b)->content;
+	ft_pileadd_back(&(piles->stack_b), ft_pilenew(value));
+	(piles->stack_b) = (piles->stack_b)->next;
+	ft_piledelone(((piles->stack_b)->prev), del);
+	piles->stack_b->prev = NULL;
+	*(piles->stack_b) = *piles->stack_b;
+	if (status == do_not_write)
+		return;
+	ft_printf("rb\n");
+}
 
-// rrb (reverse rotate b) : Décale d’une position vers le bas tous les élements de
-// la pile b. Le dernier élément devient le premier.
+void	ft_double_rotate(t_stacks *piles)
+{
+	ft_rotate_a(piles, do_not_write);
+	ft_rotate_b(piles, do_not_write);
+	ft_printf("rr\n");
+}
 
-// rrr : rra et rrb en même temps.
+void	ft_reverse_rotate_a(t_stacks *piles, t_writing_status status)
+{
+	int		value;
+	t_pile	*first;
+	t_pile	*bf_last;
+
+	first = ft_pilefirst(piles->stack_a);
+	(piles->stack_a) = ft_pilelast(piles->stack_a);
+	bf_last = (piles->stack_a)->prev;
+	value = (piles->stack_a)->content;
+	ft_pileadd_front(&(piles->stack_a), ft_pilenew(value));
+	ft_piledelone(((piles->stack_a->next)), del);
+	(piles->stack_a)->next = first;
+	first->prev = piles->stack_a;
+	bf_last->next = NULL;
+	if (status == do_not_write)
+		return;
+	ft_printf("rra\n");
+}
+
+void	ft_reverse_rotate_b(t_stacks *piles, t_writing_status status)
+{
+	int		value;
+	t_pile	*first;
+	t_pile	*bf_last;
+
+	first = ft_pilefirst(piles->stack_b);
+	(piles->stack_b) = ft_pilelast(piles->stack_b);
+	bf_last = (piles->stack_b)->prev;
+	value = (piles->stack_b)->content;
+	ft_pileadd_front(&(piles->stack_b), ft_pilenew(value));
+	ft_piledelone(((piles->stack_b->next)), del);
+	(piles->stack_b)->next = first;
+	first->prev = piles->stack_b;
+	bf_last->next = NULL;
+	if (status == do_not_write)
+		return;
+	ft_printf("rrb\n");
+}
+
+void	ft_double_reverse_rotate(t_stacks *piles)
+{
+	ft_reverse_rotate_a(piles, do_not_write);
+	ft_reverse_rotate_b(piles, do_not_write);
+	ft_printf("rrr\n");
+}
