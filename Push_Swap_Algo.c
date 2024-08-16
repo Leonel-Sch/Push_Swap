@@ -6,7 +6,7 @@
 /*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:10:22 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/16 14:39:16 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/16 22:02:11 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void ft_sort_small_pile(t_stacks *piles, t_sorting_status *status)
 {
 	*status = sorting;
 	if (ft_pilesize(piles->stack_a) == 2)
-		ft_swap_a(piles->stack_a, writing);
+		ft_swap_a(piles, writing);
 	else
 	{
 		if (First < Second && Second > Third)
 		{
 			if (Third > First)
 			{
-				ft_swap_a(piles->stack_a, writing);
+				ft_swap_a(piles, writing);
 				ft_rotate_a(piles, writing);
 			}
 			else
@@ -33,7 +33,7 @@ void ft_sort_small_pile(t_stacks *piles, t_sorting_status *status)
 		{
 			if (Second > Third)
 			{
-				ft_swap_a(piles->stack_a, writing);
+				ft_swap_a(piles, writing);
 				ft_reverse_rotate_a(piles, writing);
 			}
 			else
@@ -41,7 +41,7 @@ void ft_sort_small_pile(t_stacks *piles, t_sorting_status *status)
 				if (First > Third)
 					ft_rotate_a(piles, writing);
 				else 
-					ft_swap_a(piles->stack_a, writing);
+					ft_swap_a(piles, writing);
 			}
 		}
 	}
@@ -79,7 +79,7 @@ void	ft_initialize_sorting(t_stacks *piles)
 	ft_push_b(piles);
 	ft_push_b(piles);
 	if (piles->stack_b->content < piles->stack_b->next->content)
-		ft_swap_b(piles->stack_b, writing);
+		ft_swap_b(piles, writing);
 }
 int	ft_mediane(int *tab, int quantity)
 {
@@ -92,13 +92,19 @@ int ft_target_position(int value, t_stacks *piles)
 {
 	int i;
 	int size;
+	t_pile *cache;
 
 	i = 0;
-	piles->stack_b = ft_pilefirst(piles->stack_b);
 	size = ft_pilesize(piles->stack_b);
-	while (value <= piles->stack_b->content)
+	//piles->stack_b = ft_pilefirst(piles->stack_b);
+	//printf("\n\n %d \n\n", piles->stack_b->content);
+	cache = piles->stack_b;
+	while (value <= cache->content)
 	{
-		piles->stack_b = piles->stack_b->next;
+		cache = piles->stack_b;
+		if (cache == NULL)
+			return (i);
+		piles->stack_b = cache;
 		i++;
 		if (i == size)
 			return (i);
@@ -118,16 +124,23 @@ void	ft_check_optimal_moove(t_stacks *piles, int mediane)
 	while (piles->stack_a != NULL)
 	{
 		ft_push_b(piles);
+		ft_print_pile(piles->stack_b);
 		value = ft_pilefirst(piles->stack_b)->content;
 		number = ft_target_position(value, piles);
+		i = 0;
 		while (i < number)
 		{
-			ft_swap_b(piles->stack_b, writing);
+			ft_swap_b(piles, writing);
 			ft_rotate_b(piles, writing);
 			i++;
 		}
+		ft_print_pile(piles->stack_b);
 		while (i > 0)
+		{
 			ft_reverse_rotate_b(piles, writing);
+			i--;
+		}
+		ft_print_pile(piles->stack_b);
 	}
 	while (piles->stack_b != NULL)
 	{
@@ -141,9 +154,18 @@ void	ft_sort_big_pile(t_stacks *piles, t_sorting_status *status, int *tab)
 
 	mediane = ft_mediane(tab, ft_pilesize(piles->stack_a));
 	*status = sorting;
+	//ft_print_pile(piles->stack_b);
+	//ft_print_pile(piles->stack_a);
 	ft_initialize_sorting(piles);
+	//ft_print_pile(piles->stack_b);
+	//printf("\n");
+	//ft_print_pile(piles->stack_a);
 	ft_check_optimal_moove(piles, mediane);
+	//ft_print_pile(piles->stack_b);
+	//printf("\n");
+	//ft_print_pile(piles->stack_a);
 	//ft_check_reverse_sorting_b(piles);
+	//ft_print_pile(piles->stack_a);
 	
 }
 
@@ -161,4 +183,5 @@ void	ft_sort_piles(t_stacks *piles, int *tab)
 
 	//ft_check_sorting(piles, &status, tab);
 	ft_print_pile(piles->stack_a);
+	ft_print_pile(piles->stack_b);
 }

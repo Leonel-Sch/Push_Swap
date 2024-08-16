@@ -6,7 +6,7 @@
 /*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/15 19:11:31 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/16 21:52:55 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_print_pile(t_pile *stack)
 	t_pile	*cache;
 
 	cache = ft_pilefirst(stack);
+	if (cache == NULL)
+		ft_printf("Nothing to print\n");
 	while (cache != NULL)
 	{
 		ft_printf("lst : %d\n", cache->content);
@@ -78,6 +80,41 @@ void	ft_make_pile(long long *tab, int words)
 	ft_ll_to_int(tab, tabint, words);
 	piles.stack_a = ft_pilefirst(piles.stack_a);
 	ft_sort_piles(&piles, tabint);
+	//ft_print_pile(piles.stack_a);
+	//ft_push_b(&piles);
+	//ft_push_b(&piles);
+	//ft_push_b(&piles);
+	//ft_push_b(&piles);
+	//ft_push_a(&piles);
+	//ft_push_a(&piles);
+	//ft_push_a(&piles);
+	//ft_push_a(&piles);
+	//ft_rotate_a(&piles, writing);
+	//ft_rotate_a(&piles, writing);
+	//ft_rotate_a(&piles, writing);
+	//ft_rotate_a(&piles, writing);
+	//ft_swap_a(&piles, writing);
+	//ft_swap_a(&piles, writing);
+	//ft_swap_a(&piles, writing);
+	//ft_swap_a(&piles, writing);
+	//ft_reverse_rotate_a(&piles, writing);
+	//ft_reverse_rotate_a(&piles, writing);
+	//ft_reverse_rotate_a(&piles, writing);
+	//ft_reverse_rotate_a(&piles, writing);
+	//ft_print_pile(piles.stack_a);
+	//printf("\n");
+	//ft_print_pile(piles.stack_b);
+	//ft_push_b(&piles);
+	//ft_push_b(&piles);
+	//ft_push_b(&piles);
+	//ft_print_pile(piles.stack_a);
+	//printf("\n");
+	//ft_print_pile(piles.stack_b);
+	//ft_reverse_rotate_b(&piles, writing);
+	//ft_reverse_rotate_b(&piles, writing);
+	//ft_print_pile(piles.stack_a);
+	//printf("\n");
+	//ft_print_pile(piles.stack_b);
 	free(tab);
 	free(tabint);
 	piles.stack_a = ft_pilefirst(piles.stack_a);

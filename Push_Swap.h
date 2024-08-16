@@ -6,7 +6,7 @@
 /*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/15 19:09:52 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/16 18:02:48 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_parsing_status	ft_check_long_long(long long *tab, int words);
 t_parsing_status	ft_isnumber(char **tab);
 size_t				ft_lenarg(char **argv);
 void				ft_make_pile(long long *tab, int words);
-void				ft_swap_a(t_pile *stack_a, t_writing_status status);
-void				ft_swap_b(t_pile *stack_b, t_writing_status status);
+void				ft_swap_a(t_stacks *piles, t_writing_status status);
+void				ft_swap_b(t_stacks *piles, t_writing_status status);
 t_pile				*ft_pilefirst(t_pile *pile);
 void				del(int *contenu);
 void	ft_push_b(t_stacks *piles);
