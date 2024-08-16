@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:19:49 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/08 17:05:14 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/15 18:50:57 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_parsing_status	ft_push_swap(int argc, char **argv)
 	if (ft_parsing(tabllong, words, str) == INVALID_VALUE)
 		return (free(tabllong), INVALID_VALUE);
 	ft_make_pile(tabllong, words);
-	return (free(str), free(tabllong), VALID_VALUE);
+	return (free(str), VALID_VALUE);
 }
 
 int	main(int argc, char **argv)

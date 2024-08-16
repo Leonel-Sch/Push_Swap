@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Command.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:07:29 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/12 19:50:35 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:46:57 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_push_a(t_stacks *piles)
 		(piles->stack_b)->prev = NULL;
 		*(piles->stack_b) = *piles->stack_b;
 	}
+	ft_printf("pb\n");
 }
 
 void	del(int *contenu)
@@ -104,6 +105,7 @@ void	ft_push_b(t_stacks *piles)
 		(piles->stack_a)->prev = NULL;
 		*(piles->stack_a) = *piles->stack_a;
 	}
+	ft_printf("pb\n");
 }
 
 void	ft_rotate_a(t_stacks *piles, t_writing_status status)
@@ -113,7 +115,7 @@ void	ft_rotate_a(t_stacks *piles, t_writing_status status)
 	value = (piles->stack_a)->content;
 	ft_pileadd_back(&(piles->stack_a), ft_pilenew(value));
 	(piles->stack_a) = (piles->stack_a)->next;
-	ft_piledelone(((piles->stack_a)->prev), del);
+	ft_piledelone((piles->stack_a->prev), del);
 	piles->stack_a->prev = NULL;
 	*(piles->stack_a) = *piles->stack_a;
 	if (status == do_not_write)
@@ -125,7 +127,8 @@ void	ft_rotate_b(t_stacks *piles, t_writing_status status)
 {
 	int	value;
 
-	value = (piles->stack_b)->content;
+	piles->stack_b = ft_pilefirst(piles->stack_b);
+	value = piles->stack_b->content;
 	ft_pileadd_back(&(piles->stack_b), ft_pilenew(value));
 	(piles->stack_b) = (piles->stack_b)->next;
 	ft_piledelone(((piles->stack_b)->prev), del);

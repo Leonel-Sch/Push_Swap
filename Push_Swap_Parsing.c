@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:00:01 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/08 16:46:41 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:04:15 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_parsing_status	ft_parsing(long long *tabllong, int words, char *str)
 
 	tab = NULL;
 	i = 1;
+	i++;
 	//printf("%zu", ft_strlen(str));
 	tab = ft_split(str, 32);
 	//free(str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/12 19:50:23 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:09:52 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <string.h>
 # include <unistd.h>
 # include "Libft/libft.h"
+# define First piles->stack_a->content
+# define Second piles->stack_a->next->content
+# define Third piles->stack_a->next->next->content
 
 typedef enum	e_parsing_status
 {
@@ -32,6 +35,13 @@ typedef enum	e_writing_status
 	writing = 1,
 	do_not_write = 0,
 }				t_writing_status;
+
+typedef enum	e_sorting_status
+{
+	waiting = 1,
+	sorting = 1,
+	finished = 0,
+}				t_sorting_status;
 
 typedef struct e_piles
 {
@@ -60,9 +70,9 @@ void	ft_double_rotate(t_stacks *piles);
 void	ft_reverse_rotate_a(t_stacks *piles, t_writing_status status);
 void	ft_reverse_rotate_b(t_stacks *piles, t_writing_status status);
 void	ft_double_reverse_rotate(t_stacks *piles);
-
-
-
+void	ft_sort_tab(long long **tab, int quantity);
+void	ft_print_pile(t_pile *stack);
+void	ft_sort_piles(t_stacks *piles, int *tab);
 
 
 #endif

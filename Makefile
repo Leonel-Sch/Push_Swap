@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+         #
+#    By: leonel <leonel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 16:34:49 by lscheupl          #+#    #+#              #
-#    Updated: 2024/08/12 14:44:19 by lscheupl         ###   ########.fr        #
+#    Updated: 2024/08/13 18:03:56 by leonel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,10 @@ SOURCES_PUSH_SWAP = *.c
 OBJ = *.o
 
 #Includes###################################
-INCLUDES_LIBFT = Libft/libft.h
-INCLUDES = Push_Swap.h
+INCLUDES_LIBFT =
+# Libft/libft.h
+INCLUDES =
+# Push_Swap.h
 
 #Compilation################################
 CC = cc
@@ -103,7 +105,7 @@ all:
 	$(MAKE) $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SOURCES_PUSH_SWAP) -I $(INCLUDES) -I $(INCLUDES_LIBFT) $(NAME_LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(SOURCES_PUSH_SWAP) $(INCLUDES) $(INCLUDES_LIBFT) $(NAME_LIBFT) -o $(NAME)
 
 clean: fclean_libft
 
@@ -122,7 +124,7 @@ all_libft: $(NAME_LIBFT)
 
 $(NAME_LIBFT): $(SOURCES_LIBFT)
 	mkdir ./obj/
-	$(CC) $(CFLAGS) -c $(SOURCES_LIBFT) -I $(INCLUDES_LIBFT)
+	$(CC) $(CFLAGS) -c $(SOURCES_LIBFT) $(INCLUDES_LIBFT)
 	mv *.o obj/
 	ar rcs $(NAME_LIBFT) ./obj/$(OBJ)
 

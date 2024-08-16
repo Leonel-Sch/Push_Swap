@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Pile.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/12 19:55:22 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:11:31 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	ft_print_pile(t_pile *stack)
 	}
 }
 
+void	ft_ll_to_int(long long *src, int *dest, int nb_value)
+{
+	int i;
+
+	i = 0;
+	while (i < nb_value)
+	{
+		dest[i] = (int)src[i];
+		i++;
+	}
+}
+
 void	ft_make_pile(long long *tab, int words)
 {
 	t_stacks	piles;
@@ -55,17 +67,20 @@ void	ft_make_pile(long long *tab, int words)
 		i++;
 	}
 	piles.stack_b = NULL;
-	ft_printf("\n ----------- \n\n");
-	ft_printf("\n Stack A start\n");
-	ft_print_pile(piles.stack_a);
-	ft_printf("\n ----------- \n\n");
-	ft_swap_a(piles.stack_a, writing);
-	ft_rotate_a(&piles, writing);
-	ft_push_b(&piles);
-	ft_swap_a(piles.stack_a, writing);
-	ft_swap_a(piles.stack_a, writing);
-	ft_print_pile(piles.stack_a);
-	ft_printf("\n ----------- \n\n");
+	i = 1;
+	ft_sort_tab(&tab, words);
+	int *tabint;
+
+	tabint = NULL;
+	tabint = malloc((sizeof (int)) * words + 1);
+	if (!tabint)
+		return;
+	ft_ll_to_int(tab, tabint, words);
+	piles.stack_a = ft_pilefirst(piles.stack_a);
+	ft_sort_piles(&piles, tabint);
+	free(tab);
+	free(tabint);
+	piles.stack_a = ft_pilefirst(piles.stack_a);
 	ft_pileclear(&piles.stack_a, del);
-	ft_pileclear(&piles.stack_b, del);
+	//ft_pileclear(&piles.stack_b, del);
 }
