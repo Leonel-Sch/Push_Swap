@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/20 17:48:25 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:40:30 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "Libft/libft.h"
+# include "Libft2/libft.h"
 # define First piles->stack_a->content
 # define Second piles->stack_a->next->content
 # define Third piles->stack_a->next->next->content
