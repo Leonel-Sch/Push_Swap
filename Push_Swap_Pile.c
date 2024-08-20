@@ -6,40 +6,51 @@
 /*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/16 21:52:55 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/19 16:25:41 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push_Swap.h"
 
-t_pile	*ft_pilefirst(t_pile *pile)
-{
-	t_pile	*cache;
+//t_pile	*ft_pilefirst(t_pile *pile)
+//{
+//	t_pile	*cache;
 
-	cache = NULL;
-	if (pile == NULL)
-		return (pile);
-	while (pile != NULL)
-	{
-		cache = pile->prev;
-		if (cache == NULL)
-			return (pile);
-		pile = cache;
-	}
-	return (pile);
-}
+//	cache = NULL;
+//	if (pile == NULL)
+//		return (pile);
+//	while (pile != NULL)
+//	{
+//		cache = pile->prev;
+//		if (cache == NULL)
+//			return (pile);
+//		pile = cache;
+//	}
+//	return (pile);
+//}
 
 void	ft_print_pile(t_pile *stack)
 {
 	t_pile	*cache;
+	int i;
 
+	i = 0;
 	cache = ft_pilefirst(stack);
 	if (cache == NULL)
 		ft_printf("Nothing to print\n");
 	while (cache != NULL)
 	{
-		ft_printf("lst : %d\n", cache->content);
+		//if (cache->prev == NULL)
+		//	ft_printf("lst %d prev : NULL\n", i);
+		//else
+		//	ft_printf("lst %d prev : %d\n", i, cache->prev->content);
+		ft_printf("n°%d : %d\n", i, cache->content);
+		//if (cache->next == NULL)
+		//	ft_printf("lst %d next : NULL\n", i);
+		//else
+		//	ft_printf("lst %d next : %d\n", i, cache->next->content);
 		cache = cache->next;
+		i++;
 	}
 }
 

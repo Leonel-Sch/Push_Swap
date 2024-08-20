@@ -6,7 +6,7 @@
 #    By: leonel <leonel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 16:34:49 by lscheupl          #+#    #+#              #
-#    Updated: 2024/08/13 18:03:56 by leonel           ###   ########.fr        #
+#    Updated: 2024/08/19 14:08:02 by leonel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,8 @@ SOURCES_LIBFT += Libft/ft_pilelast.c
 SOURCES_LIBFT += Libft/ft_pilemap.c
 SOURCES_LIBFT += Libft/ft_pilenew.c
 SOURCES_LIBFT += Libft/ft_pilesize.c
+SOURCES_LIBFT += Libft/ft_pilefirst.c
+
 
 SOURCES_PUSH_SWAP = *.c
 
