@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Algo_Utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:43:44 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/15 12:17:20 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/20 17:18:21 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_sort_tab(long long **tab, int quantity)
 {
-	int i;
+	int	i;
 	int j;
 	long long cache;
 	long long *tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Pile.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/19 16:25:41 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/20 18:09:33 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,70 +65,74 @@ void	ft_ll_to_int(long long *src, int *dest, int nb_value)
 		i++;
 	}
 }
+void	ft_no_negative(int *tab_sorted, int *tab_ori, int size)
+{
+	long i;
+	long j;
+	char check[size-1];
+
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		check[i] = '0';
+		i++;
+	}
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (tab_sorted[i] != tab_ori[j] && j < size)
+		{
+			j++;
+			if (tab_sorted[i] == tab_ori[j] && check[j] == '1' && j < size - 1)
+				j++;
+		}
+		if (tab_sorted[i] == tab_ori[j] && check[j] == '0')
+		{
+			tab_ori[j] = i;
+			check[j] = '1';
+		}
+		i++;
+	}
+}
 
 void	ft_make_pile(long long *tab, int words)
 {
 	t_stacks	piles;
 	int			i;
-
-	i = 0;
-	piles.stack_a = ft_pilenew((int)tab[i]);
-	i++;
-	while (i < words)
-	{
-		ft_pileadd_front(&piles.stack_a, ft_pilenew((int)tab[i]));
-		i++;
-	}
-	piles.stack_b = NULL;
-	i = 1;
-	ft_sort_tab(&tab, words);
+	int			*tabint_ori;
 	int *tabint;
 
+	i = 0;
+	tabint_ori = NULL;
+	tabint_ori = malloc((sizeof (int)) * words + 1);
+	if (!tabint_ori)
+		return;
+	ft_ll_to_int(tab, tabint_ori, words);
+	ft_sort_tab(&tab, words);
 	tabint = NULL;
 	tabint = malloc((sizeof (int)) * words + 1);
 	if (!tabint)
 		return;
 	ft_ll_to_int(tab, tabint, words);
-	piles.stack_a = ft_pilefirst(piles.stack_a);
-	ft_sort_piles(&piles, tabint);
-	//ft_print_pile(piles.stack_a);
-	//ft_push_b(&piles);
-	//ft_push_b(&piles);
-	//ft_push_b(&piles);
-	//ft_push_b(&piles);
-	//ft_push_a(&piles);
-	//ft_push_a(&piles);
-	//ft_push_a(&piles);
-	//ft_push_a(&piles);
-	//ft_rotate_a(&piles, writing);
-	//ft_rotate_a(&piles, writing);
-	//ft_rotate_a(&piles, writing);
-	//ft_rotate_a(&piles, writing);
-	//ft_swap_a(&piles, writing);
-	//ft_swap_a(&piles, writing);
-	//ft_swap_a(&piles, writing);
-	//ft_swap_a(&piles, writing);
-	//ft_reverse_rotate_a(&piles, writing);
-	//ft_reverse_rotate_a(&piles, writing);
-	//ft_reverse_rotate_a(&piles, writing);
-	//ft_reverse_rotate_a(&piles, writing);
-	//ft_print_pile(piles.stack_a);
-	//printf("\n");
-	//ft_print_pile(piles.stack_b);
-	//ft_push_b(&piles);
-	//ft_push_b(&piles);
-	//ft_push_b(&piles);
-	//ft_print_pile(piles.stack_a);
-	//printf("\n");
-	//ft_print_pile(piles.stack_b);
-	//ft_reverse_rotate_b(&piles, writing);
-	//ft_reverse_rotate_b(&piles, writing);
-	//ft_print_pile(piles.stack_a);
-	//printf("\n");
-	//ft_print_pile(piles.stack_b);
+
+	ft_no_negative(tabint, tabint_ori, words);
+
+	piles.stack_a = ft_pilenew(tabint_ori[i]);
+	i++;
+	while (i < words)
+	{
+		ft_pileadd_front(&piles.stack_a, ft_pilenew(tabint_ori[i]));
+		i++;
+	}
+	piles.stack_b = NULL;
+
+	ft_sort_piles(&piles, tabint, tabint_ori, words);
 	free(tab);
 	free(tabint);
 	piles.stack_a = ft_pilefirst(piles.stack_a);
+	ft_print_pile(piles.stack_a);
 	ft_pileclear(&piles.stack_a, del);
 	//ft_pileclear(&piles.stack_b, del);
 }
