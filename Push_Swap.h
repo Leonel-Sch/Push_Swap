@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/20 19:40:30 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:37:38 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_reverse_rotate_a(t_stacks *piles, t_writing_status status);
 void	ft_reverse_rotate_b(t_stacks *piles, t_writing_status status);
 void	ft_double_reverse_rotate(t_stacks *piles);
 void	ft_sort_tab(long long **tab, int quantity);
+void	ft_sort_int_tab(int **tab, int quantity);
 void	ft_print_pile(t_pile *stack);
 void	ft_sort_piles(t_stacks *piles, int *tab_sorted, int *tab_ori, int words);
 
