@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Command.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:07:29 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/18 11:15:58 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/22 15:30:08 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	ft_rotate_b(t_stacks *piles, t_writing_status status)
 	
 	if (piles->stack_b == NULL || piles->stack_b->next == NULL)
 		return;
+	piles->stack_b = ft_pilefirst(piles->stack_b);
 	cache = piles->stack_b;
 	piles->stack_b = piles->stack_b->next;
 	piles->stack_b->prev = NULL;
@@ -159,7 +160,7 @@ void	ft_reverse_rotate_a(t_stacks *piles, t_writing_status status)
 
 	if (piles->stack_a == NULL || piles->stack_a->next == NULL)
 		return ;
-	cache = piles->stack_a; 
+	cache = piles->stack_a;
 	piles->stack_a = ft_pilelast(piles->stack_a);
 	piles->stack_a->prev->next = NULL;
 	piles->stack_a->prev = NULL;
