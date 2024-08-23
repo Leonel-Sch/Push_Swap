@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/22 14:45:12 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:34:06 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	ft_make_pile(long long *tab, int words)
 
 	ft_sort_piles(&piles, tabint, tabint_ori, words);
 	free(tab);
-	free(tabint);
+	free(tabint_ori);
 	piles.stack_a = ft_pilefirst(piles.stack_a);
 	//ft_print_pile(piles.stack_a);
 	ft_pileclear(&piles.stack_a, del);

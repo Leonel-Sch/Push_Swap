@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:54:55 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/22 15:26:45 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:17:31 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,31 @@
 
 void	put_in_b(t_stacks *piles, int size)
 {
-	int fifteen;
+	int percent;
+	float ratio;
 
-	if (size < 7)
-		fifteen = 1;
+	if (size < 200)
+		ratio = 0.10;
 	else
-		fifteen = (size * 0.15);
+		ratio = 0.04;
+	if (size < 10)
+		percent = 1;
+	else
+		percent = (size * ratio);
 	while (ft_pilesize(piles->stack_a) > 3)
 	{
-		if (piles->stack_a->content <= fifteen)
+		if (piles->stack_a->content <= percent)
 		{
 			ft_push_b(piles);
-			fifteen++;
+			percent++;
 		}
+		else if((piles->stack_a->next->content <= percent) && (piles->stack_a->content <= (percent + 1)))
+			ft_swap_a(piles, writing);
 		else
 			ft_rotate_a(piles, writing);
 	}
+	//ft_print_pile(piles->stack_b);
+	//ft_print_pile(piles->stack_a);
 	ft_sort_small_pile(piles);
 	ft_max_in_a(piles, size);
 }
@@ -79,8 +88,6 @@ void	ft_max_in_a(t_stacks *piles, int size_b)
 
 	i = 3;
 
-	ft_print_pile(piles->stack_b);
-	ft_print_pile(piles->stack_a);
 	piles->stack_b = ft_pilefirst(piles->stack_b);
 	while (piles->stack_b != NULL)
 	{
@@ -88,6 +95,7 @@ void	ft_max_in_a(t_stacks *piles, int size_b)
 		size_b = ft_pilesize(piles->stack_b);
 		piles->stack_b = ft_pilefirst(piles->stack_b);
 		max_pos = ft_where_is_max(piles);
+		piles->stack_b = ft_pilefirst(piles->stack_b);
 		if (max_pos > size_b / 2)
 		{
 			while (max_pos < size_b)
@@ -95,6 +103,7 @@ void	ft_max_in_a(t_stacks *piles, int size_b)
 				ft_reverse_rotate_b(piles, writing);
 				max_pos++;
 			}
+			piles->stack_b = ft_pilefirst(piles->stack_b);
 			while (ft_pilelast(piles->stack_a)->content > piles->stack_b->content && i > 0)
 			{
 				i--;
@@ -106,9 +115,13 @@ void	ft_max_in_a(t_stacks *piles, int size_b)
 		{
 			while (max_pos > 0)
 			{
-				ft_rotate_b(piles, writing);
+				if (max_pos == 1)
+					ft_swap_b(piles, writing);
+				else
+					ft_rotate_b(piles, writing);
 				max_pos--;
 			}
+			piles->stack_b = ft_pilefirst(piles->stack_b);
 			while (ft_pilelast(piles->stack_a)->content > piles->stack_b->content && i > 0)
 			{
 				i--;
@@ -116,8 +129,6 @@ void	ft_max_in_a(t_stacks *piles, int size_b)
 			}
 			ft_push_a(piles);
 		}
-		ft_print_pile(piles->stack_b);
-		ft_print_pile(piles->stack_a);
 	}
 }
 

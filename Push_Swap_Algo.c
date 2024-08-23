@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:10:22 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/22 14:42:03 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:33:18 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,6 @@ void	ft_sort_big_pile(t_stacks *piles, int size)
 void	ft_sort_piles(t_stacks *piles, int *tab_sorted, int *tab_ori, int words)
 {
 	//int i = 0;
-
 	ft_sort_int_tab(&tab_ori, words);
 	if (ft_pilesize(piles->stack_a) <= 3)
 	{
@@ -301,19 +300,6 @@ void	ft_sort_piles(t_stacks *piles, int *tab_sorted, int *tab_ori, int words)
 		ft_sort_big_pile(piles, words);
 	//ft_check_sorting(piles);
 	//ft_print_pile(piles->stack_a);
-	//ft_reverse_rotate_a(piles, do_not_write);
-	//ft_reverse_rotate_a(piles, do_not_write);
-	//ft_reverse_rotate_a(piles, do_not_write);
-	//ft_reverse_rotate_a(piles, do_not_write);
-	//printf("\n");
-	//ft_print_pile(piles->stack_a);
-	//ft_push_b(piles);
-	//ft_push_b(piles);
-	//ft_push_b(piles);
-	//printf("\n");
-	//ft_push_a(piles);
-	//ft_push_a(piles);
-	//ft_push_a(piles);
-	ft_print_pile(piles->stack_a);
-	printf("just for tab and words %d%d", tab_sorted[0], words);
+	//printf("just for tab and words %d%d", tab_sorted[0], words);
+	free(tab_sorted);
 }

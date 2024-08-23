@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:07:29 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/22 15:30:08 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:40:26 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ void	ft_swap_b(t_stacks *piles, t_writing_status status)
 
 	piles->stack_b = ft_pilefirst(piles->stack_b);
 	if (piles->stack_b == NULL || piles->stack_b->next == NULL)
-	{
-		ft_printf("exited");
 		return ;
-	}
+	
 	cache = piles->stack_b;
 	piles->stack_b = piles->stack_b->next;
 	//if (piles->stack_b != NULL)
