@@ -6,33 +6,16 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:00:24 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/23 18:34:06 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:51:47 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push_Swap.h"
 
-//t_pile	*ft_pilefirst(t_pile *pile)
-//{
-//	t_pile	*cache;
-
-//	cache = NULL;
-//	if (pile == NULL)
-//		return (pile);
-//	while (pile != NULL)
-//	{
-//		cache = pile->prev;
-//		if (cache == NULL)
-//			return (pile);
-//		pile = cache;
-//	}
-//	return (pile);
-//}
-
 void	ft_print_pile(t_pile *stack)
 {
 	t_pile	*cache;
-	int i;
+	int		i;
 
 	i = 0;
 	cache = ft_pilefirst(stack);
@@ -40,15 +23,7 @@ void	ft_print_pile(t_pile *stack)
 		ft_printf("Nothing to print\n");
 	while (cache != NULL)
 	{
-		//if (cache->prev == NULL)
-		//	ft_printf("lst %d prev : NULL\n", i);
-		//else
-		//	ft_printf("lst %d prev : %d\n", i, cache->prev->content);
 		ft_printf("n°%d : %d\n", i, cache->content);
-		//if (cache->next == NULL)
-		//	ft_printf("lst %d next : NULL\n", i);
-		//else
-		//	ft_printf("lst %d next : %d\n", i, cache->next->content);
 		cache = cache->next;
 		i++;
 	}
@@ -56,7 +31,7 @@ void	ft_print_pile(t_pile *stack)
 
 void	ft_ll_to_int(long long *src, int *dest, int nb_value)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < nb_value)
@@ -65,12 +40,17 @@ void	ft_ll_to_int(long long *src, int *dest, int nb_value)
 		i++;
 	}
 }
+
 void	ft_no_negative(int *tab_sorted, int *tab_ori, int size)
 {
-	long i;
-	long j;
-	char check[size-1];
+	long	i;
+	long	j;
+	char	*check;
 
+	check = NULL;
+	check = malloc(size * sizeof(char));
+	if (!check)
+		return ;
 	i = 0;
 	j = 0;
 	while (i < size)
@@ -78,6 +58,7 @@ void	ft_no_negative(int *tab_sorted, int *tab_ori, int size)
 		check[i] = '0';
 		i++;
 	}
+	check[i] = '\0';
 	i = 0;
 	while (i < size)
 	{
@@ -95,6 +76,7 @@ void	ft_no_negative(int *tab_sorted, int *tab_ori, int size)
 		}
 		i++;
 	}
+	free(check);
 }
 
 void	ft_make_pile(long long *tab, int words)
@@ -102,37 +84,33 @@ void	ft_make_pile(long long *tab, int words)
 	t_stacks	piles;
 	int			i;
 	int			*tabint_ori;
-	int *tabint;
+	int			*tabint;
 
 	i = 0;
 	tabint_ori = NULL;
-	tabint_ori = malloc((sizeof (int)) * words + 1);
+	tabint_ori = malloc((sizeof(int)) * words + 1);
 	if (!tabint_ori)
-		return;
+		return ;
 	ft_ll_to_int(tab, tabint_ori, words);
 	ft_sort_tab(&tab, words);
 	tabint = NULL;
-	tabint = malloc((sizeof (int)) * words + 1);
+	tabint = malloc((sizeof(int)) * words + 1);
 	if (!tabint)
-		return;
+		return ;
 	ft_ll_to_int(tab, tabint, words);
-
 	ft_no_negative(tabint, tabint_ori, words);
-
 	piles.stack_a = ft_pilenew(tabint_ori[i]);
 	i++;
 	while (i < words)
 	{
-		ft_pileadd_front(&piles.stack_a, ft_pilenew(tabint_ori[i]));
+		ft_pileadd_back(&piles.stack_a, ft_pilenew(tabint_ori[i]));
 		i++;
 	}
 	piles.stack_b = NULL;
-
 	ft_sort_piles(&piles, tabint, tabint_ori, words);
+	//ft_print_pile(piles.stack_a);
 	free(tab);
 	free(tabint_ori);
 	piles.stack_a = ft_pilefirst(piles.stack_a);
-	//ft_print_pile(piles.stack_a);
 	ft_pileclear(&piles.stack_a, del);
-	//ft_pileclear(&piles.stack_b, del);
 }

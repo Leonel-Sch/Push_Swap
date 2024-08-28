@@ -6,12 +6,11 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:02:19 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/07 11:27:07 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:03:09 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push_Swap.h"
-
 
 size_t	ft_lenarg(char **argv)
 {

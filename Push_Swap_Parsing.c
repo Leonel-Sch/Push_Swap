@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:00:01 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/13 18:04:15 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/28 16:03:15 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,17 @@ t_parsing_status	ft_parsing(long long *tabllong, int words, char *str)
 	tab = NULL;
 	i = 1;
 	i++;
-	//printf("%zu", ft_strlen(str));
 	tab = ft_split(str, 32);
-	//free(str);
 	if (ft_check_values(tab, words, tabllong) == INVALID_VALUE)
 		return (INVALID_VALUE);
 	return (VALID_VALUE);
 }
 
-char *ft_make_string(char *str, int argc, char **argv)
+char	*ft_make_string(char *str, int argc, char **argv)
 {
 	int	i;
 
 	i = 2;
-	//if (argc == 2)
-	//{
-	//	str = malloc(sizeof(char) * ft_strlen(argv[1]) + 1);
-	//	if (!str)
-	//		return (free(str), NULL);
-	//	str = ft_strcpy(str, argv[1]);
-	//}
 	if (argc >= 2)
 	{
 		str = malloc(sizeof(char) * ft_lenarg(argv) + 1);

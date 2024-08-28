@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:43:44 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/21 16:37:18 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:03:24 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,12 @@ void	ft_sort_tab(long long **tab, int quantity)
 
 void	ft_sort_int_tab(int **tab, int quantity)
 {
-	int i;
-	int j;
-	int cache;
-	int *tmp;
+	int	i;
+	int	j;
+	int	cache;
+	int	*tmp;
 
 	tmp = *tab;
-
 	i = 0;
 	while (i < quantity)
 	{
