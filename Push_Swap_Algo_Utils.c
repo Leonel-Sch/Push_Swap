@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:43:44 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/28 16:03:24 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:48:37 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,25 @@ void	ft_sort_int_tab(int **tab, int quantity)
 		}
 		i++;
 	}
+}
+
+int	determine_ratio(int size)
+{
+	float	ratio;
+
+	if (size < 200)
+		ratio = 0.10;
+	else
+		ratio = 0.04;
+	return (size * ratio);
+}
+
+void	by_the_bottom(int max_pos, int size, int *i, t_stacks *piles)
+{
+	while (max_pos < size)
+	{
+		ft_reverse_rotate_b(piles, writing);
+		max_pos++;
+	}
+	on_top_of_a(piles, i);
 }

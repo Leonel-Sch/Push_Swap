@@ -6,21 +6,39 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:54:55 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/30 20:11:38 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:48:49 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push_Swap.h"
 
-int	determine_ratio(int size)
+void	case_b(t_stacks *piles, int *percent)
 {
-	float	ratio;
-
-	if (size < 200)
-		ratio = 0.10;
+	if (piles->stack_a->content <= *percent)
+	{
+		ft_push_b(piles);
+		*percent = *percent + 1;
+	}
+	else if ((piles->stack_a->next->content <= *percent)
+		&& (piles->stack_a->content <= (*percent + 1)))
+	{
+		ft_swap_a(piles, writing);
+		ft_push_b(piles);
+		*percent = *percent + 1;
+	}
+	else if (ft_pilelast(piles->stack_a)->content <= *percent)
+	{
+		ft_reverse_rotate_a(piles, writing);
+		ft_push_b(piles);
+		*percent = *percent + 1;
+	}
 	else
-		ratio = 0.04;
-	return (size * ratio);
+	{
+		while (!(piles->stack_a->content <= *percent))
+			ft_rotate_a(piles, writing);
+		ft_push_b(piles);
+		*percent = *percent + 1;
+	}
 }
 
 void	put_in_b(t_stacks *piles, int size)
@@ -30,33 +48,7 @@ void	put_in_b(t_stacks *piles, int size)
 	percent = determine_ratio(size);
 	while (ft_pilesize(piles->stack_a) > 3)
 	{
-		if (piles->stack_a->content <= percent)
-		{
-			ft_push_b(piles);
-			percent++;
-		}
-		else if ((piles->stack_a->next->content <= percent)
-			&& (piles->stack_a->content <= (percent + 1)))
-		{
-			ft_swap_a(piles, writing);
-			ft_push_b(piles);
-			percent++;
-		}
-		else if (ft_pilelast(piles->stack_a)->content <= percent)
-		{
-			ft_reverse_rotate_a(piles, writing);
-			ft_push_b(piles);
-			percent++;
-		}
-		else
-		{
-			while (!(piles->stack_a->content <= percent))
-			{
-				ft_rotate_a(piles, writing);
-			}
-			ft_push_b(piles);
-			percent++;
-		}
+		case_b(piles, &percent);
 		if (ft_pilesize(piles->stack_b) > 2)
 		{
 			if (piles->stack_b->next->content > piles->stack_b->content)
@@ -83,15 +75,6 @@ void	on_top_of_a(t_stacks *piles, int *i)
 		ft_reverse_rotate_a(piles, writing);
 	}
 	ft_push_a(piles);
-}
-void	by_the_bottom(int max_pos, int size, int *i, t_stacks *piles)
-{
-	while (max_pos < size)
-	{
-		ft_reverse_rotate_b(piles, writing);
-		max_pos++;
-	}
-	on_top_of_a(piles, i);
 }
 
 void	ft_max_in_a(t_stacks *piles, int size_b)

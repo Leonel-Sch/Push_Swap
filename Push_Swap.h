@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/30 18:02:30 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:49:42 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,9 @@ void				put_in_b(t_stacks *piles, int size);
 void				ft_max_in_a(t_stacks *piles, int size_b);
 int					ft_where_is_max(t_stacks *piles);
 int					ft_check_sorting(t_stacks *piles);
+void				by_the_bottom(int max_pos, int size, int *i,
+						t_stacks *piles);
+int					determine_ratio(int size);
+void				on_top_of_a(t_stacks *piles, int *i);
 
 #endif
