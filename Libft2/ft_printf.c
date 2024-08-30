@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 19:16:19 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/03 17:45:28 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:50:33 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,36 +66,3 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (count);
 }
-//int main()
-//{
-//	char *str = NULL;
-//	printf("---PRINTF---\n");
-//	printf("%d\n", printf("char : %c\n", 'c'));
-//	printf("%d\n", printf("str : %s\n", "bonsoir"));
-//	printf("%d\n", printf("int d : %d\n", 2147483647));
-//	printf("%d\n", printf("int d : %d\n", -2147483648));
-//	printf("%d\n", printf("int i : %i\n", 2147483647));
-//	printf("%d\n", printf("int i : %i\n", -2147483648));
-//	printf("%d\n", printf("pourcent : %%\n"));
-//	printf("%d\n", printf(NULL));
-//	printf("%d\n", printf("ptr : %p\n", str));
-//	printf("%d\n", printf("hexa x : %x\n", 42));
-//	printf("%d\n", printf("hexa X : %X\n", 42));
-//	printf("%d\n", printf("unsigned : %u", 3147483647));
-//	printf("%d\n", printf("Coucou%p %c %s %u %x %X %d %i %% Oui\n", str, 'b', str, 3147483647, 42, 42, 2, 3));
-
-//	printf("---FT_PRINTF---\n");
-//	printf("%d\n", ft_printf("char : %c\n", 'c'));
-//	printf("%d\n", ft_printf("str : %s\n", "bonsoir"));
-//	printf("%d\n", ft_printf("int d : %d\n", 2147483647));
-//	printf("%d\n", ft_printf("int d : %d\n", -2147483648));
-//	printf("%d\n", ft_printf("int i : %i\n", 2147483647));
-//	printf("%d\n", ft_printf("int i : %i\n", -2147483648));
-//	printf("%d\n", ft_printf("pourcent : %%\n"));
-//	printf("%d\n", ft_printf(NULL));
-//	printf("%d\n", ft_printf("ptr : %p\n", str));
-//	printf("%d\n", ft_printf("hexa x : %x\n", 42));
-//	printf("%d\n", ft_printf("hexa X : %X\n", 42));
-//	printf("%d\n", ft_printf("unsigned : %u", 3147483647));
-//	printf("%d\n", ft_printf("Coucou%p %c %s %u %x %X %d %i %% Oui\n", str, 'b', str, 3147483647, 42, 42, 2, 3));
-//}

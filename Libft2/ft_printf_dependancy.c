@@ -6,12 +6,11 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:47:04 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/03 17:47:26 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:50:58 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 void	ft_putstr_f(char *s, int *count)
 {
@@ -57,7 +56,6 @@ void	ft_putnbr_base_ul(unsigned long long nb, char *base, int *count)
 	{
 		ft_putnbr_base_ul(nb / ft_strlen(base), base, count);
 		ft_putchar_nb(base[nb % ft_strlen(base)], count);
-		//"0123456789ABCDEF" 
 	}
 	if (nb < ft_strlen(base))
 	{

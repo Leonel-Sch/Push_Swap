@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:10:22 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/28 17:40:26 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:32:45 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_sort_small_pile(t_stacks *piles)
 {
+	if (ft_pilesize(piles->stack_a) == 2)
+		return (ft_swap_a(piles, writing));
 	if (piles->stack_a->content > piles->stack_a->next->content
 		&& piles->stack_a->content < piles->stack_a->next->next->content)
 		ft_swap_a(piles, writing);
@@ -48,9 +50,11 @@ int	ft_check_sorting(t_stacks *piles)
 		}
 		else
 		{
+			piles->stack_a = ft_pilefirst(piles->stack_a);
 			return (0);
 		}
 	}
+	piles->stack_a = ft_pilefirst(piles->stack_a);
 	return (1);
 }
 
@@ -61,6 +65,7 @@ void	ft_sort_big_pile(t_stacks *piles, int size)
 
 void	ft_sort_piles(t_stacks *piles, int *tab_sorted, int *tab_ori, int words)
 {
+	piles->stack_b = NULL;
 	ft_sort_int_tab(&tab_ori, words);
 	if (ft_pilesize(piles->stack_a) <= 3)
 	{
@@ -68,5 +73,5 @@ void	ft_sort_piles(t_stacks *piles, int *tab_sorted, int *tab_ori, int words)
 	}
 	else
 		ft_sort_big_pile(piles, words);
-	free(tab_sorted);
+	tab_sorted = NULL;
 }

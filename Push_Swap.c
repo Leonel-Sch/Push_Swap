@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:19:49 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/15 18:50:57 by leonel           ###   ########.fr       */
+/*   Updated: 2024/08/30 19:30:05 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ t_parsing_status	ft_push_swap(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	if (argc <= 1)
-		return (ft_printf("Error"), 0);
+	if (argc <= 1 || argv[1][0] == 0)
+		return (ft_putendl_fd("Error", STDERR_FILENO), 1);
 	if (ft_push_swap(argc, argv) == INVALID_VALUE)
-		return (ft_printf("Error\n"), 0);
+		return (ft_putendl_fd("Error", STDERR_FILENO), 1);
+	else
+		return (0);
 }

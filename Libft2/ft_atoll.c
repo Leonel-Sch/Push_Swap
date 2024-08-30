@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:46:56 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/06 15:53:11 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:51:50 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ long long	ft_atoll(const char *nptr)
 {
 	long long	sum;
 	long long	sign;
-	int	i;
+	int			i;
 
 	sign = 1;
 	sum = 0;
@@ -38,7 +38,7 @@ long long	ft_atoll(const char *nptr)
 	}
 	return (sum * sign);
 }
-//int main()
+// int main()
 //{
 //	printf("%lld\n", ft_atoll("21474836564550"));
 //	return (0);

@@ -6,7 +6,7 @@
 /*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 16:23:22 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/28 16:07:00 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:02:30 by lscheupl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,6 @@ void				ft_double_push(t_stacks *piles);
 void				ft_rotate_a(t_stacks *piles, t_writing_status status);
 void				ft_rotate_b(t_stacks *piles, t_writing_status status);
 void				ft_double_rotate(t_stacks *piles);
-// t_pile	*ft_pilefirst(t_pile *pile)
-//{
-//	t_pile	*cache;
-
-//	cache = NULL;
-//	if (pile == NULL)
-//		return (pile);
-//	while (pile != NULL)
-//	{
-//		cache = pile->prev;
-//		if (cache == NULL)
-//			return (pile);
-//		pile = cache;
-//	}
-//	return (pile);
-//}
-
 void				ft_reverse_rotate_a(t_stacks *piles,
 						t_writing_status status);
 void				ft_reverse_rotate_b(t_stacks *piles,
