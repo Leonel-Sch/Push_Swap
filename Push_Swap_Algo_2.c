@@ -3,57 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Algo_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:54:55 by lscheupl          #+#    #+#             */
-/*   Updated: 2024/08/30 20:48:49 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/09/01 21:57:19 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Push_Swap.h"
 
-void	case_b(t_stacks *piles, int *percent)
+void	case_b(t_stacks *piles, int *end_window, int *start_window)
 {
-	if (piles->stack_a->content <= *percent)
+	if (piles->stack_a->content <= *end_window && piles->stack_a->content >= *start_window)
 	{
 		ft_push_b(piles);
-		*percent = *percent + 1;
+		*end_window = *end_window + 1;
+		*start_window = *start_window + 1;
 	}
-	else if ((piles->stack_a->next->content <= *percent)
-		&& (piles->stack_a->content <= (*percent + 1)))
+	else if (piles->stack_a->content <= *start_window)
 	{
-		ft_swap_a(piles, writing);
 		ft_push_b(piles);
-		*percent = *percent + 1;
+		ft_rotate_b(piles, writing);
+		*end_window = *end_window + 1;
+		*start_window = *start_window + 1;
 	}
-	else if (ft_pilelast(piles->stack_a)->content <= *percent)
-	{
-		ft_reverse_rotate_a(piles, writing);
-		ft_push_b(piles);
-		*percent = *percent + 1;
-	}
+	//else if ((piles->stack_a->next->content <= *end_window)
+	//	&& (piles->stack_a->content <= (*end_window + 1)))
+	//{
+	//	ft_swap_a(piles, writing);
+	//	ft_push_b(piles);
+	//	*end_window = *end_window + 1;
+	//}
+	//else if (ft_pilelast(piles->stack_a)->content <= *end_window)
+	//{
+	//	ft_reverse_rotate_a(piles, writing);
+	//	ft_push_b(piles);
+	//	*end_window = *end_window + 1;
+	//}
 	else
 	{
-		while (!(piles->stack_a->content <= *percent))
+		if (ft_pilelast(piles->stack_a)->content <= *end_window)
+		{
+			ft_reverse_rotate_a(piles, writing);
+		}
+		while (!(piles->stack_a->content <= *end_window))
 			ft_rotate_a(piles, writing);
-		ft_push_b(piles);
-		*percent = *percent + 1;
+		//ft_push_b(piles);
+		//*end_window = *end_window + 1;
+		//ft_push_b(piles);
+		//ft_rotate_b(piles, writing);
 	}
 }
 
 void	put_in_b(t_stacks *piles, int size)
 {
-	int	percent;
+	int	end_window;
+	int start_window;
 
-	percent = determine_ratio(size);
+	end_window = determine_ratio(size);
+	start_window = 0;
 	while (ft_pilesize(piles->stack_a) > 3)
 	{
-		case_b(piles, &percent);
+		case_b(piles, &end_window, &start_window);
 		if (ft_pilesize(piles->stack_b) > 2)
 		{
 			if (piles->stack_b->next->content > piles->stack_b->content)
 				ft_swap_b(piles, writing);
 		}
+		//while (ft_pilelast(piles->stack_b)->content <= percent && ft_pilelast(piles->stack_b)->content > cap_value)
+		//{
+		//		ft_reverse_rotate_b(piles, writing);
+		//		if (piles->stack_b->next->content > piles->stack_b->content)
+		//			ft_swap_b(piles, writing);
+		//}
 	}
 	ft_sort_small_pile(piles);
 	ft_max_in_a(piles, size);

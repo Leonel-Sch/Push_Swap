@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push_Swap_Algo.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheupl <lscheupl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leonel <leonel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:10:22 by leonel            #+#    #+#             */
-/*   Updated: 2024/08/30 19:32:45 by lscheupl         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:09:44 by leonel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	ft_sort_piles(t_stacks *piles, int *tab_sorted, int *tab_ori, int words)
 	else
 		ft_sort_big_pile(piles, words);
 	tab_sorted = NULL;
+	free(tab_sorted);
 }
